@@ -7,7 +7,7 @@ keywords:
   - ai-proxy-multi
   - AI
   - LLM
-description: The ai-proxy-multi Plugin extends the capabilities of ai-proxy with load balancing, retries, fallbacks, and health chekcs, simplying the integration with OpenAI, DeepSeek, and other OpenAI-compatible APIs.
+description: The ai-proxy-multi Plugin extends the capabilities of ai-proxy with load balancing, retries, fallbacks, and health chekcs, simplifying the integration with OpenAI, DeepSeek, AIMLAPI, and other OpenAI-compatible APIs.
 ---
 
 <!--
@@ -35,7 +35,7 @@ description: The ai-proxy-multi Plugin extends the capabilities of ai-proxy with
 
 ## Description
 
-The `ai-proxy-multi` Plugin simplifies access to LLM and embedding models by transforming Plugin configurations into the designated request format for OpenAI, DeepSeek, and other OpenAI-compatible APIs. It extends the capabilities of [`ai-proxy-multi`](./ai-proxy.md) with load balancing, retries, fallbacks, and health checks.
+The `ai-proxy-multi` Plugin simplifies access to LLM and embedding models by transforming Plugin configurations into the designated request format for OpenAI, DeepSeek, AIMLAPI, and other OpenAI-compatible APIs. It extends the capabilities of [`ai-proxy-multi`](./ai-proxy.md) with load balancing, retries, fallbacks, and health checks.
 
 In addition, the Plugin also supports logging LLM request information in the access log, such as token usage, model, time to the first response, and more.
 
@@ -64,14 +64,14 @@ In addition, the Plugin also supports logging LLM request information in the acc
 | instances.auth                      | object         | True     |                                   |              | Authentication configurations. |
 | instances.auth.header               | object         | False    |                                   |              | Authentication headers. At least one of the `header` and `query` should be configured. |
 | instances.auth.query                | object         | False    |                                   |              | Authentication query parameters. At least one of the `header` and `query` should be configured. |
-| instances.options                   | object         | False    |                                   |              | Model configurations. In addition to `model`, you can configure additional parameters and they will be forwarded to the upstream LLM service in the request body. For instance, if you are working with OpenAI or DeepSeek, you can configure additional parameters such as `max_tokens`, `temperature`, `top_p`, and `stream`. See your LLM provider's API documentation for more available options. |
+| instances.options                   | object         | False    |                                   |              | Model configurations. In addition to `model`, you can configure additional parameters and they will be forwarded to the upstream LLM service in the request body. For instance, if you are working with OpenAI, DeepSeek, or AIMLAPI, you can configure additional parameters such as `max_tokens`, `temperature`, `top_p`, and `stream`. See your LLM provider's API documentation for more available options. |
 | instances.options.model             | string         | False    |                                   |              | Name of the LLM model, such as `gpt-4` or `gpt-3.5`. See your LLM provider's API documentation for more available models. |
 | logging                             | object         | False    |                                   |              | Logging configurations. |
 | logging.summaries                   | boolean        | False    | false                           |              | If true, log request LLM model, duration, request, and response tokens. |
 | logging.payloads                    | boolean        | False    | false                           |              | If true, log request and response payload. |
 | logging.override                    | object         | False    |                                   |              | Override setting. |
 | logging.override.endpoint           | string         | False    |                                   |              | LLM provider endpoint to replace the default endpoint with. If not configured, the Plugin uses the default OpenAI endpoint `https://api.openai.com/v1/chat/completions`. |
-| checks                              | object         | False    |                                   |              | Health check configurations. Note that at the moment, OpenAI and DeepSeek do not provide an official health check endpoint. Other LLM services that you can configure under `openai-compatible` provider may have available health check endpoints. |
+| checks                              | object         | False    |                                   |              | Health check configurations. Note that at the moment, OpenAI, DeepSeek, and AIMLAPI do not provide an official health check endpoint. Other LLM services that you can configure under `openai-compatible` provider may have available health check endpoints. |
 | checks.active                       | object         | True     |                                   |              | Active health check configurations. |
 | checks.active.type                  | string         | False    | http                            | [http, https, tcp] | Type of health check connection. |
 | checks.active.timeout               | number         | False    | 1                               |              | Health check timeout in seconds. |
